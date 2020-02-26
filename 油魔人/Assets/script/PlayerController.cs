@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid2D;
     Animator animator;
-    float jumpForce = 300.0f;
+    float jumpForce = 400.0f;
     float walkForce = 30.0f;
-    float maxWalkSpeed = 5.0f;
+    float maxWalkSpeed = 3.0f;
 
     float temperture = 50f;    // 温度
     [SerializeField]
