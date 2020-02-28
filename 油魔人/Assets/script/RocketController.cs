@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RocketController : MonoBehaviour
 {
-
     public GameObject bulletPrefab;
 
     void Update()
@@ -21,6 +21,10 @@ public class RocketController : MonoBehaviour
         {
             GameObject obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             obj.transform.localScale = transform.localScale;
+
         }
+
+
     }
+
 }

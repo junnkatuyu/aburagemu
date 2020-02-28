@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float lowerTempureturePerSecond = 1f;    // 1秒間に下げる温度
     float upperTempureturePerSecond = 25f;    // 1秒間に上げる温度
-    float upperTempureturePerSecons = 5f;
+    float upperTempureturePerSecons = 5f;     //1秒間に下げる温度
+    float upperTempureturePerSeconr = 10f;    //常温
 
     bool isFinished = false;
     void Start()
@@ -108,8 +109,17 @@ public class PlayerController : MonoBehaviour
             this.temperture -= this.lowerTempureturePerSecond * Time.deltaTime;
             this.temperture = Mathf.Clamp(this.temperture, 0, 100);
         }
+        if (this.temperture <= 0)
+        {
+            this.isFinished = true;
+            this.rigid2D.velocity = Vector2.zero;
+            Invoke("ChangeScene", 2f);
+        }
     }
-
+    void ChangeScene()
+    {
+        SceneManager.LoadScene("Gameover");
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         // ホットゾーンなら
@@ -127,6 +137,14 @@ public class PlayerController : MonoBehaviour
             {
                 this.temperture -= this.upperTempureturePerSecons * Time.deltaTime;
                 this.temperture = Mathf.Clamp(this.temperture, 0, 100);
+            }
+        }
+        if (collision.gameObject.tag == "Zou")
+        {
+            if (this.temperture < 100)
+            {
+                this.temperture += this.upperTempureturePerSeconr * Time.deltaTime;
+                this.temperture = Mathf.Clamp(this.temperture, 0, 50);
             }
         }
     }
