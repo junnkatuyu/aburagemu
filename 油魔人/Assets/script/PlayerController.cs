@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     float walkForce = 30.0f;
     float maxWalkSpeed = 3.0f;
 
+
+
     float temperture = 50f;    // 温度
     [SerializeField]
     float lowerTempureturePerSecond = 1f;    // 1秒間に下げる温度
